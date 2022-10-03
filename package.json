@@ -9,8 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ethersproject/providers": "^5.7.1",
+    "@tanstack/react-query": "^4.9.0",
     "alchemy-sdk": "^2.1.0",
+    "get-ens": "^2.0.3",
     "next": "latest",
+    "node-fetch": "^3.2.10",
     "react": "18.1.0",
     "react-dom": "18.1.0"
   },
