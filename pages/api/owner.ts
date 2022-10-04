@@ -13,7 +13,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const { address } = req.query;
-  // const domain = await provider.lookupAddress(address as string)
-  const data = await getENS(provider)(String(address));
-  res.status(200).json(data);
+  const domain = await provider.lookupAddress(address as string)
+  // const data = await getENS(provider)(String(address));
+  res.status(200).json({ domain });
 }
