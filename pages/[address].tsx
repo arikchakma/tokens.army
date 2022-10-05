@@ -13,7 +13,12 @@ const Address: NextPage = () => {
     fetchAddressData(address as string)
   );
 
-  return <div>{isLoading ? 'Loading...' : data?.owner}</div>;
+  return (
+    <main>
+      <div>{isLoading ? 'Loading...' : data?.owner}</div>
+      <div>{isLoading ? 'Loading...' : data?.name}</div>
+    </main>
+  );
 };
 
 export default Address;
