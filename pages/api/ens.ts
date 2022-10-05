@@ -47,6 +47,7 @@ const getAddress = async (domain: string) => {
   const requestBody = {
     query: `query($domain: String!) {
     domains(where:{name: $domain}) { 
+      name
       resolvedAddress {
         id
       }

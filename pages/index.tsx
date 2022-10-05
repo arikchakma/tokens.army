@@ -1,13 +1,21 @@
-import { useQuery } from '@tanstack/react-query';
 import type { NextPage } from 'next';
+import { useRouter } from 'next/router';
 
 const Home: NextPage = () => {
-  const { data } = useQuery(['ens'], () =>
-    fetch(`/api/ens?address=arikko.eth`).then(res => res.json())
+  const router = useRouter();
+  return (
+    <main>
+      <form
+        onSubmit={e => {
+          e.preventDefault();
+          router.push(`/${(e.currentTarget.elements as any).address.value}`);
+        }}
+      >
+        <input name="address" type="text" />
+        <button type="submit">Submit</button>
+      </form>
+    </main>
   );
-  console.log(data);
-
-  return <main>Hello</main>;
 };
 
 export default Home;
