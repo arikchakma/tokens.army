@@ -1,9 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { useQuery } from '@tanstack/react-query';
 import type { NextPage } from 'next';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
 
 const fetchAddressData = (address: string) => {
   return fetch(`/api/ens?address=${address}`).then(res => res.json());
@@ -22,7 +20,6 @@ const Address: NextPage = () => {
   const { data: nfts } = useQuery(['nfts', address], () =>
     fetchNFTs(address as string)
   );
-  // console.log(nfts?.ownedNfts?.map((nft: any) => nft?.media[0]?.gateway));
 
   return (
     <main>
@@ -30,23 +27,25 @@ const Address: NextPage = () => {
       <div>{isLoading ? 'Loading...' : data?.name}</div>
       <div className="grid grid-cols-4 gap-5 bg-gray-100/50">
         {nfts?.ownedNfts?.map((nft: any) => (
-          <figure
-            key={nft?.media[0]?.gateway}
-            className="relative aspect-square w-full overflow-hidden rounded-lg transition-all duration-300 hover:scale-110 bg-red-400 hover:rotate-6 hover:z-50"
-          >
-            <img
-              src={nft?.media[0]?.gateway}
-              // src={
-              //   nft?.media[0]?.gateway.includes('data:image/')
-              //     ? `${nft?.media[0]?.gateway}`
-              //     : `https://images.weserv.nl/?url=${nft?.media[0]?.gateway}`
-              // }
-              alt={nft?.title}
-              // layout="fill"
-              loading="lazy"
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-          </figure>
+          <>
+            {nft?.media[0]?.gateway && (
+              <figure
+                key={nft?.contract?.name + nft?.tokenId}
+                className="relative aspect-square w-full overflow-hidden rounded-lg bg-gray-200 shadow-md transition-all duration-300 hover:z-50 hover:rotate-6 hover:scale-110"
+              >
+                <img
+                  src={nft?.media[0]?.gateway}
+                  alt={nft?.title}
+                  onError={e => {
+                    (e.currentTarget?.parentElement as any).style.display =
+                      'none';
+                  }}
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+              </figure>
+            )}
+          </>
         ))}
       </div>
     </main>
