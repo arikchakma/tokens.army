@@ -14,9 +14,12 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const { address } = req.query;
-  const nfts = await alchemy.nft.getNftsForOwner(address as string, {
-    // pageSize: 12,
-  });
+  const nfts = await alchemy.nft.getNftsForOwner(
+    (address as string)?.toLowerCase(),
+    {
+      // pageSize: 12,
+    }
+  );
 
   res.status(200).json(nfts);
 }

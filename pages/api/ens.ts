@@ -11,6 +11,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const { address } = req.query;
+  const _address = (address as string).toLowerCase();
   /**
    * @dev Get address & records from ENS
    * @param {string} address
@@ -19,8 +20,8 @@ export default async function handler(
   const DOMAIN_REGEX = /^([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}$/;
 
   if (
-    !ADDRESS_REGEX.test(address as string) &&
-    !DOMAIN_REGEX.test(address as string)
+    !ADDRESS_REGEX.test(_address as string) &&
+    !DOMAIN_REGEX.test(_address as string)
   ) {
     return res.status(400).json({ error: 'Invalid address or domain' });
   }
@@ -30,15 +31,15 @@ export default async function handler(
    */
   if (
     address &&
-    ADDRESS_REGEX.test(address as string) &&
-    !DOMAIN_REGEX.test(address as string)
+    ADDRESS_REGEX.test(_address as string) &&
+    !DOMAIN_REGEX.test(_address as string)
   ) {
-    const data = await fetchEns(address as string);
+    const data = await fetchEns(_address as string);
     const ens = formatResult(data);
     return res.status(200).json(ens);
   }
 
-  const data = await getAddress(address as string);
+  const data = await getAddress(_address as string);
   const ens = formatResult(data);
   return res.status(200).json(ens);
 }
