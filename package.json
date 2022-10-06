@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@ethersproject/providers": "^5.7.1",
+    "@fontsource/ibm-plex-mono": "^4.5.12",
+    "@fontsource/silkscreen": "^4.5.0",
     "@tanstack/react-query": "^4.9.0",
     "alchemy-sdk": "^2.1.0",
     "get-ens": "^2.0.3",

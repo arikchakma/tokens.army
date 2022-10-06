@@ -1,3 +1,5 @@
+import '@fontsource/silkscreen';
+import "@fontsource/ibm-plex-mono"
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import {
