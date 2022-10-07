@@ -15,11 +15,19 @@ const Address: NextPage = () => {
   const router = useRouter();
   const { address } = router.query;
 
-  const { data, isLoading } = useQuery(['ens', address], () =>
-    fetchAddressData(address as string)
+  const { data, isLoading } = useQuery(
+    ['ens', address],
+    () => fetchAddressData(address as string),
+    {
+      enabled: !!address,
+    }
   );
-  const { data: nfts } = useQuery(['nfts', address], () =>
-    fetchNFTs(address as string)
+  const { data: nfts } = useQuery(
+    ['nfts', address],
+    () => fetchNFTs(address as string),
+    {
+      enabled: !!address,
+    }
   );
 
   return (
@@ -31,13 +39,10 @@ const Address: NextPage = () => {
         <p>{isLoading ? 'Loading...' : truncateEthAddress(data?.owner)}</p>
       </div>
       <div className="mt-10 grid grid-cols-4 gap-5 -xl:grid-cols-3 -md:grid-cols-2 -sm:grid-cols-1">
-        {nfts?.ownedNfts?.map((nft: any) => (
-          <>
+        {nfts?.ownedNfts?.map((nft: any, i: number) => (
+          <div key={`${nft?.contract?.name}${nft?.tokenId}${i}`}>
             {nft?.media[0]?.gateway && (
-              <figure
-                key={nft?.contract?.name + nft?.tokenId}
-                className="relative aspect-square w-full overflow-hidden rounded-lg bg-gray-200 shadow-md transition-all duration-300 hover:z-50 hover:rotate-6 hover:scale-110"
-              >
+              <figure className="relative aspect-square w-full overflow-hidden rounded-lg bg-gray-200 shadow-md transition-all duration-300 hover:z-50 hover:rotate-6 hover:scale-110">
                 <img
                   src={nft?.media[0]?.gateway}
                   alt={nft?.title}
@@ -50,7 +55,7 @@ const Address: NextPage = () => {
                 />
               </figure>
             )}
-          </>
+          </div>
         ))}
       </div>
     </main>
