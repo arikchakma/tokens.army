@@ -41,7 +41,11 @@ const Address: NextPage = () => {
             } | Tokens.Army`
           : 'Tokens.Army'
       }
-      description={`${data?.name} has ${nfts?.ownedNfts?.length} NFTs on Ethereum.`}
+      description={
+        data
+          ? `${data?.name} has ${nfts?.ownedNfts?.length} NFTs on Ethereum.`
+          : `Explore anyone's NFTs on Ethereum.`
+      }
     >
       <main className="mx-auto min-h-screen max-w-[1440px] bg-gray-100/50 p-5 font-mono">
         <div className="text-center">
