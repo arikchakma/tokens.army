@@ -1,30 +1,25 @@
 /* eslint-disable @next/next/no-img-element */
 import { useQuery } from '@tanstack/react-query';
-import type { NextPage, GetServerSideProps } from 'next';
+import { NextPage, GetServerSideProps, InferGetStaticPropsType } from 'next';
 import { useRouter } from 'next/router';
 import Container from '../components/Container';
 import truncateEthAddress from '../utils/addressFormat';
+import { fetchAddress } from '../utils/fetchAddress';
 
-const fetchAddressData = (address: string) => {
-  return fetch(`/api/ens?address=${address}`).then(res => res.json());
-};
 const fetchNFTs = (address: string) => {
   return fetch(`/api/nfts/${address}`).then(res => res.json());
 };
 
-const Address: NextPage = () => {
-  const router = useRouter();
-  const { address } = router.query;
-
-  const { data, isLoading } = useQuery(
-    ['ens', address],
-    () => fetchAddressData(address as string),
-    {
-      enabled: !!address,
-    }
-  );
+const Address = ({
+  user,
+}: InferGetStaticPropsType<typeof getServerSideProps>) => {
+  const {
+    name,
+    address,
+    owner,
+  }: { name: string; address: string; owner: string } = user;
   const { data: nfts } = useQuery(
-    ['nfts', address],
+    ['nfts', owner],
     () => fetchNFTs(address as string),
     {
       enabled: !!address,
@@ -34,25 +29,25 @@ const Address: NextPage = () => {
   return (
     <Container
       title={
-        data
+        user
           ? `${
-              (data?.name as string)?.charAt(0).toUpperCase() +
-              (data?.name as string)?.slice(1)
+              (name as string)?.charAt(0).toUpperCase() +
+              (name as string)?.slice(1)
             } | Tokens.Army`
           : 'Tokens.Army'
       }
       description={
-        data
-          ? `${data?.name} has ${nfts?.ownedNfts?.length} NFTs on Ethereum.`
+        user
+          ? `${name} has ${nfts?.ownedNfts?.length} NFTs on Ethereum.`
           : `Explore anyone's NFTs on Ethereum.`
       }
     >
-      <main className="mx-auto min-h-screen max-w-[1440px] bg-gray-100/50 p-5 font-mono">
+      <main className="mx-auto min-h-screen max-w-[1440px] p-5 font-mono">
         <div className="text-center">
           <h1 className="font-display text-[40px] font-bold leading-10 text-gray-900">
-            {isLoading ? 'Loading...' : data?.name}
+            {name}
           </h1>
-          <p>{isLoading ? 'Loading...' : truncateEthAddress(data?.owner)}</p>
+          <p>{truncateEthAddress(owner)}</p>
         </div>
         <div className="mt-10 grid grid-cols-4 gap-5 -xl:grid-cols-3 -md:grid-cols-2 -sm:grid-cols-1">
           {nfts?.ownedNfts?.map((nft: any, i: number) => (
@@ -77,6 +72,25 @@ const Address: NextPage = () => {
       </main>
     </Container>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async ctx => {
+  const { address } = ctx.query;
+  const user = await fetchAddress(address as string);
+
+  if (!user) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {
+      user,
+    },
+  };
 };
 
 export default Address;

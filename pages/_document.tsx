@@ -48,7 +48,7 @@ export default function Document(props: any) {
           content="#111827"
         />
       </Head>
-      <body>
+      <body className="bg-gray-100/50">
         <Main />
         <NextScript />
       </body>
