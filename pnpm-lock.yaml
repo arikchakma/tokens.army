@@ -14,6 +14,7 @@ specifiers:
   eslint-config-next: 12.3.1
   get-ens: ^2.0.3
   next: latest
+  nextjs-progressbar: ^0.0.14
   node-fetch: ^3.2.10
   postcss: ^8.4.14
   prettier-plugin-tailwindcss: ^0.1.13
@@ -30,6 +31,7 @@ dependencies:
   alchemy-sdk: 2.1.0
   get-ens: 2.0.3
   next: 12.3.1_ef5jwxihqo6n7gxfmzogljlgcm
+  nextjs-progressbar: 0.0.14_next@12.3.1+react@18.1.0
   node-fetch: 3.2.10
   react: 18.1.0
   react-dom: 18.1.0_react@18.1.0
@@ -2082,6 +2084,18 @@ packages:
       - babel-plugin-macros
     dev: false
 
+  /nextjs-progressbar/0.0.14_next@12.3.1+react@18.1.0:
+    resolution: {integrity: sha512-AXYXHDN6M52AwFnGqH/vlwyo0gbC9zM7QS/4ryOTI0RUqfze5FJl8uSrxKJMzK6hGFdDeQXcZoWsLGXeCVtTwg==}
+    peerDependencies:
+      next: '>= 6.0.0'
+      react: '>= 16.0.0'
+    dependencies:
+      next: 12.3.1_ef5jwxihqo6n7gxfmzogljlgcm
+      nprogress: 0.2.0
+      prop-types: 15.8.1
+      react: 18.1.0
+    dev: false
+
   /node-domexception/1.0.0:
     resolution: {integrity: sha512-/jKZoMpw0F8GRwl4/eLROPA3cfcXtLApP0QzLmUT/HuPCZWyB7IY9ZrMeKw2O/nFIqPQB3PVM9aYm0F312AXDQ==}
     engines: {node: '>=10.5.0'}
@@ -2115,10 +2129,13 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
+  /nprogress/0.2.0:
+    resolution: {integrity: sha512-I19aIingLgR1fmhftnbWWO3dXc0hSxqHQHQb3H8m+K3TnEn/iSeTZZOyvKXWqQESMwuUVnatlCnZdLBZZt2VSA==}
+    dev: false
+
   /object-assign/4.1.1:
     resolution: {integrity: sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==}
     engines: {node: '>=0.10.0'}
-    dev: true
 
   /object-hash/3.0.0:
     resolution: {integrity: sha512-RSn9F68PjH9HqtltsSnqYC1XXoWe9Bju5+213R98cNGttag9q9yAOTzdbsqvIa7aNm5WffBZFpWYr2aWrklWAw==}
@@ -2359,7 +2376,6 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
       react-is: 16.13.1
-    dev: true
 
   /punycode/2.1.1:
     resolution: {integrity: sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==}
@@ -2387,7 +2403,6 @@ packages:
 
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
-    dev: true
 
   /react/18.1.0:
     resolution: {integrity: sha512-4oL8ivCz5ZEPyclFQXaNksK3adutVS8l2xzZU0cqEFrE9Sb7fC0EFK5uEk74wIreL1DERyjvsU915j1pcT2uEQ==}

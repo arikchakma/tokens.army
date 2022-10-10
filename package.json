@@ -16,6 +16,7 @@
     "alchemy-sdk": "^2.1.0",
     "get-ens": "^2.0.3",
     "next": "latest",
+    "nextjs-progressbar": "^0.0.14",
     "node-fetch": "^3.2.10",
     "react": "18.1.0",
     "react-dom": "18.1.0"
