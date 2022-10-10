@@ -38,7 +38,7 @@ const Address = ({
       }
       description={
         user
-          ? `${name} has ${nfts?.ownedNfts?.length} NFTs on Ethereum.`
+          ? `Check out ${name}'s NFTs on the blockchain.`
           : `Explore anyone's NFTs on Ethereum.`
       }
     >
