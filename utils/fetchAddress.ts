@@ -26,6 +26,8 @@ export const fetchAddress = async (address: string) => {
       !DOMAIN_REGEX.test(_address as string)
     ) {
       const data = await fetchEns(_address as string);
+      console.log(data);
+      
       const ens = formatResult(data);
       return ens;
     }

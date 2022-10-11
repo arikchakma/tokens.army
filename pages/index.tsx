@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import Container from '../components/Container';
+import LogoMark from '../components/icons/LogoMark';
 import SearchIcon from '../components/icons/SearchIcon';
 
 const Home: NextPage = () => {
@@ -8,6 +9,7 @@ const Home: NextPage = () => {
   return (
     <Container>
       <main className="flex min-h-screen flex-col items-center justify-center bg-gray-100/50 px-5 font-mono">
+        <LogoMark className="text-[#111827]" />
         <div className="flex flex-col items-center justify-center text-center">
           <h1 className="font-display text-[40px] font-bold leading-10 text-gray-900">
             Tokens.Army
