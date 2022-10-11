@@ -53,7 +53,9 @@ export default function Container({
         <meta name="twitter:description" content={description} />
         <meta
           name="twitter:image"
-          content="https://tokens-army.vercel.app/static/banner.png"
+          content={
+            image ? image : `https://tokens-army.vercel.app/static/banner.png`
+          }
         />
       </Head>
       {children}
