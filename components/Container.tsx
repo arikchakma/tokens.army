@@ -5,10 +5,12 @@ export default function Container({
   children,
   title,
   description,
+  image,
 }: {
   children: React.ReactNode;
   title?: string;
   description?: string;
+  image?: string;
 }) {
   const router = useRouter();
   return (
@@ -36,7 +38,9 @@ export default function Container({
         <meta property="og:description" content={description} />
         <meta
           property="og:image"
-          content="https://tokens-army.vercel.app/static/banner.png"
+          content={
+            image ? image : `https://tokens-army.vercel.app/static/banner.png`
+          }
         />
 
         <meta name="twitter:card" content="summary_large_image" />

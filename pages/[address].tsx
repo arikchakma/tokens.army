@@ -41,6 +41,9 @@ const Address = ({
           ? `Check out ${name}'s NFTs on the blockchain.`
           : `Explore anyone's NFTs on Ethereum.`
       }
+      image={`https://og.arikko.dev/api/img?name=${
+        name ? name : truncateEthAddress(owner)
+      }`}
     >
       <main className="mx-auto min-h-screen max-w-[1440px] p-5 font-mono">
         <div className="text-center">
