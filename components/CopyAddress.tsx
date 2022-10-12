@@ -9,12 +9,14 @@ export default function CopyAddress({ address }: { address: string }) {
 
   useEffect(() => {
     setMounted(true);
+    let timeout: NodeJS.Timeout;
 
     if (isCopied) {
-      setTimeout(() => {
+      timeout = setTimeout(() => {
         setIsCopied(false);
       }, 2000);
     }
+    return () => clearTimeout(timeout);
   }, [mounted, isCopied]);
 
   return (
