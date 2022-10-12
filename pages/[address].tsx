@@ -56,7 +56,7 @@ const Address = ({
       <main className="mx-auto min-h-screen max-w-[1440px] p-5 font-mono">
         <Header />
         <div className="mt-20 text-center">
-          <h1 className="font-display text-[40px] font-bold leading-10 text-gray-900">
+          <h1 className="font-display text-[40px] font-bold leading-none text-gray-900">
             {user ? name : truncateEthAddress(address)}
           </h1>
           <div className="mt-3 flex items-center justify-center">
