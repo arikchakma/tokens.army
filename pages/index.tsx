@@ -30,6 +30,7 @@ const Home: NextPage = () => {
         >
           <div className="flex min-w-[360px] items-center gap-2 rounded-lg bg-white px-4 shadow-[0_15px_30px_rgba(0,0,0,0.16)] ring-1 ring-gray-200/20 duration-300 ease-in-out hover:scale-105 transition hover:shadow-[0_30px_40px_rgba(0,0,0,0.12)]">
             <SearchIcon className="h-5 w-5 stroke-gray-400 stroke-2" />
+            
             <input
               name="address"
               type="text"
